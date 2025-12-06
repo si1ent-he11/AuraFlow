@@ -1,0 +1,14 @@
+.header_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+    font-family: 'Ubuntu';
+    font-size: 8px;
+    
+    padding-top: 30px;
+}
+
+.header_line_logo {
+    width: 20%;
+}
