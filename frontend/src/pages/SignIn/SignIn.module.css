@@ -1,0 +1,14 @@
+.sign_in_container {
+    text-align: center;
+}
+
+.sign_in_title {
+    font-family: 'Cormorant Garamond';
+    font-weight: 100;
+    font-size: 800%;
+    margin-top: 10%;
+}
+
+.sign_in_form_container {
+    margin-top: 10%;
+}

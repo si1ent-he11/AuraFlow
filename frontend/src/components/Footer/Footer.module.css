@@ -1,0 +1,14 @@
+.footer_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px;
+
+    background-color: #2e2e2e;
+    color: #f2f0e3;
+
+    padding: 4%;
+}

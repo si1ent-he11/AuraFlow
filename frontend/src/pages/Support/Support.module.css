@@ -1,0 +1,30 @@
+.support_page_modal {
+    text-align: center;
+}
+
+.support_titile {
+    font-family: 'Cormorant Garamond';
+    font-weight: 100;
+    font-size: 800%;
+    margin-top: 10%;
+}
+
+.support_content {
+    font-family: 'Ubuntu';
+    font-size: 18px;
+    line-height: 1.8;
+    margin-top: 6%;
+}
+
+.support_link {
+    display: inline-block;
+
+    font-family: 'Ubuntu';
+    font-size: 18px;
+    
+    color:#f47e60;
+    margin-top: 4%;
+
+    text-decoration: underline;
+    cursor: pointer;
+}

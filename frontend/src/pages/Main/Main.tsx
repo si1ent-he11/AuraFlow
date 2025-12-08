@@ -1,26 +1,18 @@
 import cl from "./Main.module.css"
-import Button from "../../UI/Button/Button"
-import Modal from "../../components/Modal/Modal"
-import { useState } from "react"
-import Header from "../../components/layout/Header/Header"
+import Button from "../../ui/Button/Button"
+import { useNavigate } from "react-router-dom"
 
 const Main = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const navig = useNavigate()
+  const toTheNextPage = () => {
+    navig("/signup")
+  }
+
+  const toHelpPage = () => {
+    navig("/support")
+  }
 
   return (
-    <div className={cl.main_page_container}>
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        <Header />
-        <div className={cl.main_page_modal}>
-          <h1 className={cl.modal_titile}>Support the<br />Creator</h1>
-          <p className={cl.modal_content}>
-            Aura Flow is built by a small team with care and intention.<br/>
-            If this space helps you focus, learn, and grow, your support truly makes a difference.
-          </p>
-          <a className={cl.modal_link}>https://help-me-pls</a>
-        </div>
-      </Modal>
-      <Header />
       <main className={cl.main_container}>
         <h1 className={cl.main_title}>
           welcome to <br />
@@ -31,18 +23,14 @@ const Main = () => {
           Discover new skills at your own pace, connect with ideas that inspire.
         </p>
         <div className={cl.main_button_bar}>
-          <Button>
-            <h1>Explore now for free &nbsp;&nbsp;➺</h1>
+          <Button onClick={toTheNextPage}>
+            Explore now for free &nbsp;&nbsp;➺
           </Button>
-          <Button background="#e6e4d7" color="#2e2e2e" onClick={() => {setIsOpen(true)}}>
-            <h1>Support &nbsp;❤️</h1>
+          <Button background="#e6e4d7" color="#2e2e2e" onClick={toHelpPage}>
+            Support &nbsp;❤️
           </Button>
         </div>
       </main>
-      <footer className={cl.footer_container}>
-        <h3>© 2025 Aura Flow — Your calm space to learn and grow | Contact: hello@auraflow.app</h3>
-      </footer>
-    </div>
   )
 }
 
