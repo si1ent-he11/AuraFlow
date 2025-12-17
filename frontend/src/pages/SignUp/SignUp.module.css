@@ -3,12 +3,13 @@
 }
 
 .sign_up_title {
+    color: #2e2e2e;
     font-family: 'Cormorant Garamond';
     font-weight: 100;
     font-size: 800%;
-    margin-top: 10%;
+    margin-top: 4%;
 }
 
 .sign_up_form_container {
-    margin-top: 10%;
+    margin-top: 6%;
 }

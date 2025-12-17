@@ -3,21 +3,6 @@
     box-sizing: border-box;
 }
 
-.header_container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    
-    font-family: 'Ubuntu';
-    font-size: 8px;
-    
-    padding-top: 30px;
-}
-
-.header_line_logo {
-    width: 20%;
-}
-
 .main_container {
     display: flex;
     flex-direction: column;
@@ -25,13 +10,14 @@
     text-align: center;
     
     height: 100vh;   
-    margin-top: 8%;
+    margin-top: 120px;
 }
 
 .main_title {
     font-family: 'Cormorant Garamond';
     font-weight: 100;
     font-size: 800%;
+    color: #2e2e2e;
 }
 
 .main_content {
@@ -39,6 +25,7 @@
     font-size: 18px;
     line-height: 1.8;
     margin-top: 4%;
+    color: #2e2e2e;
 }
 
 .main_button_bar {

@@ -1,9 +1,16 @@
 import cl from "./Main.module.css"
 import Button from "../../ui/Button/Button"
 import { useNavigate } from "react-router-dom"
+import { useAuthStatus } from "../../hooks/auth/useAuthStatus"
+import { useEffect } from "react"
 
 const Main = () => {
   const navig = useNavigate()
+  const isLoggedIn = useAuthStatus()
+  useEffect(()=>{
+    if (isLoggedIn) navig("/home")
+  }, [navig, isLoggedIn])
+  
   const toTheNextPage = () => {
     navig("/signup")
   }
@@ -11,7 +18,7 @@ const Main = () => {
   const toHelpPage = () => {
     navig("/support")
   }
-
+  
   return (
       <main className={cl.main_container}>
         <h1 className={cl.main_title}>

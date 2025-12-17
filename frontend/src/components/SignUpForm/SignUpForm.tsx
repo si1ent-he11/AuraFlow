@@ -2,19 +2,24 @@ import { useForm } from "react-hook-form";
 import Button from "../../ui/Button/Button";
 import Input from "../../ui/TextInput/Input";
 import cl from "./SignUpForm.module.css"
-
-interface FormType {
-    username: string;
-    email: string;
-    password: string;
-}
+import type { UserType } from "../../types/user";
+import useSignUp from "../../hooks/auth/useSignUp";
+import { useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
-    const {register, handleSubmit, reset, formState} = useForm<FormType>()
-
-    const fetching = (obj: FormType) => {
-        console.log(obj)
-        reset()
+    const {register, handleSubmit, formState} = useForm<UserType>()
+    const {mutateAsync} = useSignUp()
+    const navigate = useNavigate()
+    
+    const fetching = async (user: UserType) => {
+        try {
+            const res = await mutateAsync(user)
+            console.log(res)
+            navigate("/signin")
+        } catch (error) {
+            console.log(error)
+            navigate("/error", {replace: true})
+        }
     }
 
     return (

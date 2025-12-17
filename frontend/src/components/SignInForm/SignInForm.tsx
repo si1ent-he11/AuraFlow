@@ -2,18 +2,25 @@ import { useForm } from "react-hook-form";
 import Button from "../../ui/Button/Button";
 import Input from "../../ui/TextInput/Input";
 import cl from "./SignInForm.module.css"
-
-interface FormType {
-    email: string;
-    password: string;
-}
+import type { UserLoginRequestDTO } from "../../types/user";
+import { useNavigate } from "react-router-dom";
+import useSignIn from "../../hooks/auth/useSignIn";
+import useUserStore from "../../state/useUser";
 
 const SignInForm = () => {
-    const {register, handleSubmit, reset, formState} = useForm<FormType>()
+    const {register, handleSubmit, formState} = useForm<UserLoginRequestDTO>()    
+    const {mutateAsync} = useSignIn()
+    const navigate = useNavigate()
 
-    const fetching = (obj: FormType) => {
-        console.log(obj)
-        reset()
+    const setAccessToken = useUserStore((state) => state.setAccessToken)
+    const fetching = async (userDTO: UserLoginRequestDTO) => {
+        try {
+            const auth = await mutateAsync(userDTO)
+            setAccessToken(auth.accessToken)
+            navigate("/home")
+        } catch (error) {
+            navigate("/error", {replace: true});
+        }
     }
 
     return (
@@ -27,12 +34,12 @@ const SignInForm = () => {
                 {...register(
                     "email", 
                     {
-                        required:"name is empty",     
+                        required:"email is empty",     
                         pattern: {
                             value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                             message: "invalid email address"
                         }
-                    }, 
+                    },
                 )}
             />
             <Input 
@@ -46,7 +53,7 @@ const SignInForm = () => {
                 {
                     required:"password is empty",
                     minLength: { 
-                        value: 6, message: "minimum 8 characters" 
+                        value: 6, message: "minimum 6 characters" 
                     },
                     maxLength: { 
                         value: 40, message: "max 40 characters" 
@@ -57,7 +64,9 @@ const SignInForm = () => {
                     }
                 }
             )} />
-            <Button type="submit" disabled={formState.isSubmitting ? true : false} style={{}}>Submit</Button>
+            <Button type="submit" disabled={formState.isSubmitting}> 
+                Submit 
+            </Button>
         </form>
     );
 }

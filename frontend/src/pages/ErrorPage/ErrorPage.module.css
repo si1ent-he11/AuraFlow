@@ -1,0 +1,24 @@
+.error_page_container {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.error_page_title {
+    font-family: 'Cormorant Garamond';
+    font-weight: 100;
+    line-height: 1.8;
+    font-size: 800%;
+    color: #f47e60;
+    margin-top: 80px;
+}
+
+.error_page_content {
+    font-family: 'Ubuntu';
+    font-size: 18px;
+    line-height: 1.8;
+    margin-top: 0%;
+    color: #2e2e2e;
+}

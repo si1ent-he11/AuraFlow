@@ -1,9 +1,16 @@
 import { useNavigate } from "react-router-dom"
 import Header from "../../components/Header/Header"
 import cl from "./Support.module.css"
+import { useEffect } from "react"
+import { useAuthStatus } from "../../hooks/auth/useAuthStatus"
 
 const Support = () => {
     const navig = useNavigate()
+    const isLoggedIn = useAuthStatus()
+    useEffect(()=>{
+        if (isLoggedIn) navig("/home")
+    }, [navig, isLoggedIn])
+    
     const toTheNextPage = () => {
         navig("/signup")
     }
