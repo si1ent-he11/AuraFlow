@@ -7,7 +7,7 @@ import (
 	server "github.com/si1ent-he11/AuraFlow/internal"
 	"github.com/si1ent-he11/AuraFlow/internal/api"
 	"github.com/si1ent-he11/AuraFlow/internal/app"
-	"github.com/si1ent-he11/AuraFlow/internal/data"
+	data "github.com/si1ent-he11/AuraFlow/internal/db"
 	"github.com/si1ent-he11/AuraFlow/pkg/auth"
 )
 

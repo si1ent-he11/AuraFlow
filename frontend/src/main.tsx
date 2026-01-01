@@ -8,8 +8,9 @@ import SignIn from './pages/SignIn/SignIn.tsx'
 import MainPageLayout from './layouts/MainPageLayout/MainPageLayout.tsx'
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import ErrorPage from './pages/ErrorPage/ErrorPage.tsx'
-import HomePage from './pages/HomePage/HomePage.tsx'
+import Home from './pages/Home/Home.tsx'
 import HomeLayout from './layouts/HomeLayout/HomeLayout.tsx'
+import SpacePage from './pages/SpaceIntro/SpaceIntro.tsx'
 
 const router = createBrowserRouter([
     {element: <MainPageLayout />, children: [
@@ -23,7 +24,8 @@ const router = createBrowserRouter([
         {path: "/error", element: <ErrorPage />}
     ]},
     {element: <HomeLayout />, children: [
-        {path: "/home", element: <HomePage />}
+        {path: "/home", element: <Home />},
+        {path: "/spaces/:id", element: <SpacePage />}
     ]}
 ])
 

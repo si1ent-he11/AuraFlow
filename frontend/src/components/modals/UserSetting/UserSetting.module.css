@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.title {
+    font-family: 'Ubuntu';
+    font-size: 26px;
+    color: #2f3035;
+    user-select: none;
+}
+
+.form_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 40px;
+    gap: 30px;
+}
+
+.modal_input {
+    width: 100%;
+    padding: 12px 24px;
+}
+
+.error {
+    color: #e53935;
+    border: 2px solid #e53935;
+}
+
+.separator {
+    height: 2px;
+    width: 60%;
+    background-color: #2e2e2e2b;
+}
+
+.info {
+    font-family: 'Ubuntu';
+    color: #e53935;
+    max-width: 280px;
+}
+
+.info_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 26%;
+}

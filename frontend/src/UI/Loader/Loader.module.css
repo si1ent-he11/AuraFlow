@@ -2,8 +2,14 @@
     border: 4px solid #e6e4d7; 
     border-top: 4px solid #f47e60;
     border-radius: 50%;
+
     width: 40px;
     height: 40px;
+
+    position: fixed;
+    top: 6%;
+    left: 50%;
+
     animation: spin 1s linear infinite; 
 }
 

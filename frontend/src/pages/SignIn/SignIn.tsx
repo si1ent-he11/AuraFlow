@@ -18,7 +18,7 @@ const SignIn = () => {
 
     return (
         <div className={cl.sign_in_container}>
-            <Header onClick={toTheNextPage} buttonText={<>Sign up &nbsp;➺</>}/>
+            <Header onClick={toTheNextPage} buttonText={<>Sign up</>}/>
             <h1 className={cl.sign_in_title}>sign <span style={{fontStyle: "italic", color:"#f47e60"}}>in</span></h1>
             <div className={cl.sign_in_form_container}>
                 <SignInForm />

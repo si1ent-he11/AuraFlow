@@ -15,3 +15,8 @@ export interface UserTypeDTO {
     username: string;
     email: string;
 }
+
+export interface UserDTO {
+    email?: string;
+    username?: string;
+}

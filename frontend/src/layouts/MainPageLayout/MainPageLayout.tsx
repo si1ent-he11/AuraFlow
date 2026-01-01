@@ -10,7 +10,7 @@ const MainPageLayout = () => {
     }
     return (
         <div className={cl.main_page_container}>
-            <Header onClick={toTheNextPage} buttonText={<>Get Started &nbsp;&nbsp;➺</>}/>
+            <Header onClick={toTheNextPage} buttonText={<>Get Started</>}/>
             <Outlet />
             <Footer />
         </div>

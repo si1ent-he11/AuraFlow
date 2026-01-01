@@ -1,10 +1,12 @@
 package auth
 
-import "github.com/si1ent-he11/AuraFlow/internal/core"
+import (
+	domain "github.com/si1ent-he11/AuraFlow/internal/domain/entity"
+)
 
 type AuthService interface {
-	GenerateAccessToken(user core.User) (string, error)
+	GenerateAccessToken(user domain.User) (string, error)
 	GenerateRefreshToken(id int) (string, error)
-	ParseAccessToken(accessToken string) (core.User, error)
-	ParseRefreshToken(refreshToken string) (core.User, error)
+	ParseAccessToken(accessToken string) (domain.User, error)
+	ParseRefreshToken(refreshToken string) (domain.User, error)
 }

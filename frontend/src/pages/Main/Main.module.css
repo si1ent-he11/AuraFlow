@@ -15,7 +15,7 @@
 
 .main_title {
     font-family: 'Cormorant Garamond';
-    font-weight: 100;
+    font-weight: 400;
     font-size: 800%;
     color: #2e2e2e;
 }
@@ -32,4 +32,9 @@
     display: flex;
     gap: 26px;
     margin-top: 4%;
+}
+
+.support_button {
+    background:#e6e4d7 !important;
+    color:#2e2e2e !important;
 }

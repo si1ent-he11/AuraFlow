@@ -5,12 +5,10 @@ interface InputType extends React.InputHTMLAttributes<HTMLInputElement> {
     children?: React.ReactNode;
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputType>(
-  ({ className, ...props }, ref) => {
-    const rootCl = [cl.input];
-    if (className) rootCl.push(className);
+const Input = React.forwardRef<HTMLInputElement, InputType>(({ className = " ", ...props }, ref) => {
+    const rootCl = [cl.input, className].join(" ");
 
-    return <input ref={ref} className={rootCl.join(" ")} type={props.type ?? "text"} {...props} />;
+    return <input ref={ref} className={rootCl} type={props.type ?? "text"} {...props} />;
   }
 );
 

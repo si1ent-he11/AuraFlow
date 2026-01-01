@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { useGetUser } from "../hooks/user/useGetUser"
+import { useUser } from "../hooks/user/useUser"
 import useUserStore from "../state/useUser"
 import { useEffect, type ReactNode } from "react"
 
@@ -13,7 +13,7 @@ const AuthProvider = ({children}: AuthProviderType) => {
     const accessToken = useUserStore((state) => state.accessToken)
     const user = useUserStore((state) => state.user)
     const setUser = useUserStore((state) => state.setUser)
-    const {data, isError, error} = useGetUser(accessToken)
+    const {data, isError, error} = useUser(accessToken)
     
     useEffect(() => {
         if (accessToken === null) return

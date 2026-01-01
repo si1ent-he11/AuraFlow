@@ -31,9 +31,9 @@ const Main = () => {
         </p>
         <div className={cl.main_button_bar}>
           <Button onClick={toTheNextPage}>
-            Explore now for free &nbsp;&nbsp;➺
+            Explore now for free
           </Button>
-          <Button background="#e6e4d7" color="#2e2e2e" onClick={toHelpPage}>
+          <Button className={cl.support_button} onClick={toHelpPage}>
             Support &nbsp;❤️
           </Button>
         </div>

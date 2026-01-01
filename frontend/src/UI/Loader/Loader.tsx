@@ -1,7 +1,7 @@
 import cl from "./Loader.module.css";
 
 interface LoaderType {
-    className?: string
+    className?: string;
 }
 
 const Loader = ({className}: LoaderType) => {

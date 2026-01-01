@@ -1,0 +1,19 @@
+.modal_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: #2f303582;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.modal {
+    width: 600px;
+    height: 500px;
+    background-color: #f2f0e3;
+    border-radius: 20px;
+    cursor: default;
+}

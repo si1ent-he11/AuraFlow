@@ -3,11 +3,10 @@
     font-weight: 100;
     font-size: 16px;
     
-    background-color: #e6e4d7;
-    
+    background-color: #f2f0e3;
     outline: none;
     padding: 16px 28px;
 
     border-radius: 12px;
-    border: none;
+    border: 2px solid #2e2e2e;
 }

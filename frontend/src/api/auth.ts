@@ -56,15 +56,14 @@ export const refresh = async () => {
 export const fetchWithAuth = async (info: RequestInfo, init: RequestInit = {} ) => {
     const { accessToken, setAccessToken } = useUserStore.getState()
 
-    const makeRequest = (token: string | null) =>
-        fetch(info, {
-            ...init,
-            credentials: "include",
-            headers: {
-                ...init.headers,
-                ...(token ? { Authorization: `Bearer ${token}` } : {}),
-            },
-        });
+    const makeRequest = (token: string | null) => fetch(info, {
+        ...init,
+        credentials: "include",
+        headers: {
+            ...init.headers,
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+    });
 
     let res = await makeRequest(accessToken)
 
@@ -78,5 +77,19 @@ export const fetchWithAuth = async (info: RequestInfo, init: RequestInit = {} ) 
         throw new Error(`request failed: ${res.status}`)
     }
 
-    return res.json() as Promise<any>;
+    const text = await res.text()
+    try {
+        const data = text ? JSON.parse(text) : {}
+        return data
+    } catch (error) {
+        console.log(error)
+        return text
+    }
+}
+
+export const logout = async () => {
+    return await fetchWithAuth("http://localhost:8080/auth/logout",  {
+        method: "POST",
+        credentials: "include",
+    });
 }

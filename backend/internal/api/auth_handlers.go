@@ -4,12 +4,12 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/si1ent-he11/AuraFlow/internal/core"
+	domain "github.com/si1ent-he11/AuraFlow/internal/domain/entity"
 )
 
 func (r router) signUp(ctx *gin.Context) {
-	var userDTO core.UserCreateDTO
-	if err := ctx.BindJSON(&userDTO); err != nil {
+	userDTO := domain.UserCreateDTO{}
+	if err := ctx.ShouldBindJSON(&userDTO); err != nil {
 		ctx.JSON(http.StatusBadRequest, map[string]string{
 			"message": err.Error(),
 		})
@@ -30,8 +30,8 @@ func (r router) signUp(ctx *gin.Context) {
 }
 
 func (r router) signIn(ctx *gin.Context) {
-	var userDTO core.UserRequestDTO
-	if err := ctx.BindJSON(&userDTO); err != nil {
+	userDTO := domain.UserRequestDTO{}
+	if err := ctx.ShouldBindJSON(&userDTO); err != nil {
 		ctx.JSON(http.StatusBadRequest, map[string]string{
 			"message": err.Error(),
 		})
@@ -89,4 +89,17 @@ func (r router) refresh(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, map[string]string{
 		"accessToken": tokens.AccessToken,
 	})
+}
+
+func (r router) logout(ctx *gin.Context) {
+	http.SetCookie(ctx.Writer, &http.Cookie{
+		Name:     "refresh",
+		Value:    "",
+		Path:     "/",
+		MaxAge:   -1,
+		HttpOnly: true,
+		Secure:   false,
+		SameSite: http.SameSiteLaxMode,
+	})
+	ctx.Status(http.StatusOK)
 }

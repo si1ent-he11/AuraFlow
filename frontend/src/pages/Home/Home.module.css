@@ -1,0 +1,26 @@
+.home_page_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    gap: 3%;
+    height: 100vh;
+}
+
+.home_page_info {
+    font-family: 'Cormorant Garamond';
+    font-weight: 400;
+    font-size: 800%;
+    color: #2e2e2e;
+}
+
+.divider {
+    font-family: 'Ubuntu';
+    font-size:  40px;
+    line-height: 1.8;
+    color: #2e2e2e;
+}
+
+  

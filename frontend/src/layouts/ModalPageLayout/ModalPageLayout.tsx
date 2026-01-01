@@ -1,7 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom";
-
 import cl from "./ModalPageLayout.module.css"
-import Modal from "../../components/WindowModal/Modal";
+import Modal from "../../components/AppOverlay/AppOverlay";
 
 const ModalPageLayout = () => {
     const navig = useNavigate()
@@ -10,7 +9,7 @@ const ModalPageLayout = () => {
     }
 
     return (
-        <div className={cl.auth_container}>
+        <div className={cl.container}>
             <Modal isOpen={true} onClose={onClose}>
               <Outlet />
             </Modal>

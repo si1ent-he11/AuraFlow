@@ -2,20 +2,14 @@ import type React from "react";
 import cl from "./Button.module.css"
 
 interface ButtonType extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    color?: string;
-    background?: string;
     children?: React.ReactNode; 
 }
 
-const Button = ({color = "#f2f0e3", background = "#2e2e2e", children, className, onClick, ...props}: ButtonType) => {
-    const rootCl = [cl.button]
-    if (className) {
-        rootCl.push(className!)
-    }
-    
+const Button = ({ children, className = "", onClick, ...props}: ButtonType) => {    
+    const buttonClasses = [cl.button, className].join(" ");
+
     return <button
-        className={rootCl.join(" ")}
-        style={{color: color, background: background}}
+        className={buttonClasses}
         onClick={onClick}
         {...props}
     >

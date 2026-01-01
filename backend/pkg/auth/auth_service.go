@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/si1ent-he11/AuraFlow/internal/core"
+	domain "github.com/si1ent-he11/AuraFlow/internal/domain/entity"
 )
 
 type authService struct {
@@ -19,13 +19,13 @@ func NewAuthService(accessKey string, refreshKey string) authService {
 	}
 }
 
-func (as authService) GenerateAccessToken(user core.User) (string, error) {
-	access := core.AccessClaims{
+func (as authService) GenerateAccessToken(user domain.User) (string, error) {
+	access := domain.AccessClaims{
 		Id:       user.Id,
 		Email:    user.Email,
 		Username: user.Username,
 		RegisteredClaims: jwt.RegisteredClaims{
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(5 * time.Minute)),
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(5 * time.Hour)),
 		},
 	}
 
@@ -33,7 +33,7 @@ func (as authService) GenerateAccessToken(user core.User) (string, error) {
 }
 
 func (as authService) GenerateRefreshToken(id int) (string, error) {
-	refresh := core.RefreshClaims{
+	refresh := domain.RefreshClaims{
 		Id: id,
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour * 7 * 24)),
@@ -42,18 +42,18 @@ func (as authService) GenerateRefreshToken(id int) (string, error) {
 	return generateToken(refresh, as.refreshKey)
 }
 
-func (as authService) ParseAccessToken(accessToken string) (core.User, error) {
-	accessClaims, err := parseToken(accessToken, &core.AccessClaims{}, as.accessKey)
-	return core.User{
+func (as authService) ParseAccessToken(accessToken string) (domain.User, error) {
+	accessClaims, err := parseToken(accessToken, &domain.AccessClaims{}, as.accessKey)
+	return domain.User{
 		Id:       accessClaims.Id,
 		Email:    accessClaims.Email,
 		Username: accessClaims.Username,
 	}, err
 }
 
-func (as authService) ParseRefreshToken(refreshToken string) (core.User, error) {
-	refreshClaims, err := parseToken(refreshToken, &core.RefreshClaims{}, as.refreshKey)
-	return core.User{
+func (as authService) ParseRefreshToken(refreshToken string) (domain.User, error) {
+	refreshClaims, err := parseToken(refreshToken, &domain.RefreshClaims{}, as.refreshKey)
+	return domain.User{
 		Id: refreshClaims.Id,
 	}, err
 }

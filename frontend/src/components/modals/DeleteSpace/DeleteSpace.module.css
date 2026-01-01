@@ -1,0 +1,31 @@
+.delete_modal_container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.delete_modal_title {
+    font-family: 'Ubuntu';
+    font-size: 26px;
+    color: #2f3035;
+    user-select: none;
+}
+
+.delete_modal_info {
+    font-family: 'Ubuntu';
+    font-size: 22px;
+    color: #2f3035;
+
+    max-width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.spacename {
+    color: #f47e60;
+}

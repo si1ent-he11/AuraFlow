@@ -1,4 +1,3 @@
-import lineLogo from "../../images/line.svg";
 import Logo from "../Applogo/Logo/Logo";
 import Button from "../../ui/Button/Button";
 import cl from "./Header.module.css"
@@ -13,8 +12,7 @@ const Header = ({ buttonText, onClick }: HeaderType) => {
     return (
         <header className={cl.header_container}>
             <Logo />
-            <img src={lineLogo} alt="Logo" className={cl.header_line_logo}/>
-            <Button onClick={onClick}>
+            <Button onClick={onClick} className={cl.header_button}>
                 {buttonText}
             </Button>
       </header>

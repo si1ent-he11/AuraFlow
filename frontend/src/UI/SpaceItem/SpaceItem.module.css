@@ -1,0 +1,75 @@
+.space_item_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    align-self: flex-start;
+    padding-right: 2.6%;
+    line-height: 2;
+    width: 98%;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.space_item_container_hover {
+    background-color: #e6e4d7;
+}
+
+.space_item_container_hover > p {
+    color: #2f3035;
+}
+
+.space_item_container_hover > button {
+    background-color: #e6e4d7;
+}
+
+.space_item_container:hover {
+    cursor: pointer;
+}
+
+.space_item_container > button:hover {
+    cursor: pointer;
+}
+
+.delete_space_button {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    width: 28px;         
+    height: 28px;    
+    padding: 0;
+    background-color: #f2f0e3;
+    border: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.delete_space_button svg {
+    width: 16px;
+    height: 16px;
+    opacity: 0;
+    display: block;
+    transform: scale(1);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.svg_visible {
+    opacity: 1 !important;
+    transform: scale(1);
+}
+
+.svg_hidden {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+.space_item_title {
+    font-family: 'Ubuntu';
+    font-size: 20px;
+    color: #666771;
+    user-select: none;
+    
+    margin: 0;
+    max-width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

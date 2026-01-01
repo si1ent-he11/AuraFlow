@@ -1,0 +1,58 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    gap: 5%;
+}
+
+.loader {
+    top: 6%;
+    left: 70%;
+}
+
+.separator {
+    width: 180px;
+    height: 2px;
+    background-color: #f47e60;
+    margin: 24px auto;
+    opacity: 0.3;
+}
+
+.title {
+    font-family: 'Cormorant Garamond';
+    font-weight: 400;
+    font-size: 800%;
+    color: #2e2e2e;
+    margin-bottom: 16px;
+    
+    margin-top: 40px;
+    max-width: 600px;
+    min-width: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.info_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    width: 100%;
+    max-width: 500px;
+    gap: 16px;
+}
+
+.date_info {
+    font-family: 'Ubuntu';
+    font-size:  16px;
+    line-height: 1.8;
+    color: #2e2e2e;
+}
+
+.enter_button {
+    max-width: 130px;
+}

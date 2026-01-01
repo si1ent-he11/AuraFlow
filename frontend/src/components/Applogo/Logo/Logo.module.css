@@ -1,4 +1,7 @@
 .logo_contaioner {
     display: flex;
     align-items: center;
+    
+    font-family: 'Ubuntu';
+    font-size: 8px;
 }

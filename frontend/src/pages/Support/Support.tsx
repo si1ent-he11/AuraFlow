@@ -16,7 +16,7 @@ const Support = () => {
     }
     return (
         <div className={cl.support_page_modal}>
-            <Header onClick={toTheNextPage} buttonText={<>Get Started &nbsp;&nbsp;➺</>}/>
+            <Header onClick={toTheNextPage} buttonText={<>Get Started</>}/>
             <h1 className={cl.support_titile}>support the<br />creator</h1>
             <p className={cl.support_content}>
                 Aura Flow is built by a small team with care and intention.<br/>
