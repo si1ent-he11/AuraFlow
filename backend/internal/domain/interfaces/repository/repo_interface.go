@@ -17,6 +17,8 @@ type DatabaseRepository interface {
 	InsertSpace(space domain.CreateSpaceDTO) (int, error)
 	GetSpacesByUserId(userId int) ([]domain.Space, error)
 	GetSpaceById(id int) (domain.SpaceResponseDTO, error)
+	ChangeSpaceName(spaceId int, newName string) error
+	ChangeSpaceDesc(spaceId int, newDesc string) error
 	DeleteSpaceById(spaceId int) error
 
 	InsertInviteToSpace(invite domain.Invite) error
@@ -25,10 +27,26 @@ type DatabaseRepository interface {
 	DeleteInvite(inviteId uuid.UUID) error
 
 	MemberExists(dto domain.SpaceMemberDTO) (bool, error)
-	GetRoleByUserId(dto domain.SpaceMemberDTO) (string, error)
+	GetMember(dto domain.SpaceMemberDTO) (domain.SpaceMember, error)
+	GetMemberByMemberId(memberId int, spaceId int) (domain.SpaceMember, error)
 	InsertSpaceMember(spaceMember domain.CreateSpaceMemberDTO) error
 	GetAllMembersFromSpace(spaceIdDTO domain.SpaceIdDTO) ([]domain.SpaceMember, error)
+	GetAllAdminsFromSpace(dto domain.SpaceIdDTO) ([]domain.SpaceMember, error)
+	UpdateMemberUsername(dto domain.UpdateSpaceMemberDTO) error
+	IsOwner(dto domain.SpaceMemberDTO) (bool, error)
 	PromoteMember(dto domain.SpaceMemberDTO) error
 	DemoteMember(dto domain.SpaceMemberDTO) error
 	DeleteMember(dto domain.SpaceMemberDTO) error
+
+	CreateTaskGroup(tg domain.TaskGroup) error
+	UpdateTaskGroup(tg domain.TaskGroup) error
+	GetTaskGroupById(id int) (domain.TaskGroup, error)
+	GetTasksGroupsBySpaceId(id int) ([]domain.TaskGroup, error)
+
+	CreateTask(t domain.CreateTaskDTO, taskGroupId int) error
+	GetTasksByGroup(groupID int) ([]domain.Task, error)
+	DeleteTask(id int) error
+
+	InsertGrade(g domain.Grade) error
+	GetGradesByMember(memberID int, groupID int) ([]domain.Grade, error)
 }

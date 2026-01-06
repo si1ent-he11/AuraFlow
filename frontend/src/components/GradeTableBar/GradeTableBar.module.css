@@ -1,0 +1,19 @@
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    white-space: nowrap;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+.button {
+    padding: 8px 16px;
+    min-width: 100px;
+    height: 40px;
+  
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+}

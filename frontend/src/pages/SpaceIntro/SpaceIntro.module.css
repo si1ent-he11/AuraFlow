@@ -15,7 +15,7 @@
 .separator {
     width: 180px;
     height: 2px;
-    background-color: #f47e60;
+    background-color: #2e2e2e2b;
     margin: 24px auto;
     opacity: 0.3;
 }
@@ -23,7 +23,8 @@
 .title {
     font-family: 'Cormorant Garamond';
     font-weight: 400;
-    font-size: 800%;
+    font-size: 600%;
+
     color: #2e2e2e;
     margin-bottom: 16px;
     
@@ -40,7 +41,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: left;
+    text-align: center;
     width: 100%;
     max-width: 500px;
     gap: 16px;

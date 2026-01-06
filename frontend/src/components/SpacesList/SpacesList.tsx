@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import type { SpaceItemDTO } from "../../types/space";
-import SpaceItem from "../../ui/SpaceItem/SpaceItem";
 import cl from "./SpacesList.module.css"
+import SpaceListItem from "../../ui/SpaceListItem/SpaceListItem";
 
 interface SpacesList {
     list: SpaceItemDTO[];
@@ -31,9 +31,9 @@ const SpacesList = ({list, className = ""}: SpacesList) => {
     return (
         <div className={listClasses}>
             {list.map(
-                (item) => <SpaceItem key={item.id} spaceInfo={item} onClick={
+                (item) => <SpaceListItem key={item.id} spaceInfo={item} onClick={
                     () => {
-                        navig("/spaces/" + item.id)
+                        navig("/spaces/info/" + item.id)
                     }
                 }/>
             )}

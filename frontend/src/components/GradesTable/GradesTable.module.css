@@ -1,0 +1,31 @@
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+  min-width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #e5e7eb;
+  font-family: sans-serif;
+}
+
+.headerCell {
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem;
+  background-color: #e6e4d7;
+  font-weight: 600;
+  text-align: left;
+}
+
+.bodyCell {
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.row:hover {
+  background-color: #e6e4d7;
+}

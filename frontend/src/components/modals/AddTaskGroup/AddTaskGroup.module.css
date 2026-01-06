@@ -1,0 +1,23 @@
+.action_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    gap: 30px;
+}
+
+.error {
+    color: #e53935;
+    border: 2px solid #e53935;
+}
+
+.modal_input {
+    padding: 12px 24px;
+}
+
+.title {
+    font-family: 'Ubuntu';
+    font-weight: 100;
+    font-size: 26px;
+}

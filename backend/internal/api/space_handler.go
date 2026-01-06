@@ -73,12 +73,6 @@ func (r router) getSpacesByUserId(ctx *gin.Context) {
 
 func (r router) getSpaceById(ctx *gin.Context) {
 	idstr := ctx.Param("id")
-	if idstr == "" {
-		ctx.JSON(http.StatusBadRequest, map[string]string{
-			"message": "id param is empty",
-		})
-	}
-
 	id, err := strconv.Atoi(idstr)
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, map[string]string{
@@ -100,13 +94,6 @@ func (r router) getSpaceById(ctx *gin.Context) {
 
 func (r router) leaveSpace(ctx *gin.Context) {
 	spaceIdStr := ctx.Param("id")
-	if spaceIdStr == "" {
-		ctx.JSON(http.StatusBadRequest, map[string]string{
-			"message": "id param is empty",
-		})
-		return
-	}
-
 	spaceId, err := strconv.Atoi(spaceIdStr)
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, map[string]string{
@@ -134,6 +121,97 @@ func (r router) leaveSpace(ctx *gin.Context) {
 			return
 		}
 
+		ctx.JSON(http.StatusBadRequest, map[string]string{
+			"message": err.Error(),
+		})
+		return
+	}
+
+	ctx.Status(http.StatusOK)
+}
+
+func (r router) changeSpaceName(ctx *gin.Context) {
+	newDesc := domain.SpaceNameDTO{}
+	if err := ctx.ShouldBindJSON(&newDesc); err != nil {
+		ctx.JSON(http.StatusBadRequest, map[string]string{
+			"message": err.Error(),
+		})
+		return
+	}
+
+	spaceIdStr := ctx.Param("id")
+	if spaceIdStr == "" {
+		ctx.JSON(http.StatusBadRequest, map[string]string{
+			"message": "id param is empty",
+		})
+		return
+	}
+
+	spaceId, err := strconv.Atoi(spaceIdStr)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, map[string]string{
+			"message": err.Error(),
+		})
+	}
+
+	authHeader := ctx.Request.Header.Get("Authorization")
+	user, err := r.service.GetUserFromAccessToken(authHeader)
+	if err != nil {
+		ctx.JSON(http.StatusUnauthorized, map[string]string{
+			"message": err.Error(),
+		})
+		return
+	}
+
+	if err := r.service.ChangeSpaceName(domain.SpaceMemberDTO{
+		SpaceId: spaceId,
+		UserId:  user.Id,
+	}, newDesc.SpaceName); err != nil {
+		ctx.JSON(http.StatusBadRequest, map[string]string{
+			"message": err.Error(),
+		})
+		return
+	}
+
+	ctx.Status(http.StatusOK)
+}
+func (r router) changeSpaceDesc(ctx *gin.Context) {
+	newDesc := domain.SpaceDescriptionDTO{}
+	if err := ctx.ShouldBindJSON(&newDesc); err != nil {
+		ctx.JSON(http.StatusBadRequest, map[string]string{
+			"message": err.Error(),
+		})
+		return
+	}
+
+	spaceIdStr := ctx.Param("id")
+	if spaceIdStr == "" {
+		ctx.JSON(http.StatusBadRequest, map[string]string{
+			"message": "id param is empty",
+		})
+		return
+	}
+
+	spaceId, err := strconv.Atoi(spaceIdStr)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, map[string]string{
+			"message": err.Error(),
+		})
+	}
+
+	authHeader := ctx.Request.Header.Get("Authorization")
+	user, err := r.service.GetUserFromAccessToken(authHeader)
+	if err != nil {
+		ctx.JSON(http.StatusUnauthorized, map[string]string{
+			"message": err.Error(),
+		})
+		return
+	}
+
+	if err := r.service.ChangeSpaceDesc(domain.SpaceMemberDTO{
+		SpaceId: spaceId,
+		UserId:  user.Id,
+	}, newDesc.SpaceDescription); err != nil {
 		ctx.JSON(http.StatusBadRequest, map[string]string{
 			"message": err.Error(),
 		})

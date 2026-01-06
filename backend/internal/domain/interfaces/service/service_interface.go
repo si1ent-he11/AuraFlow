@@ -13,6 +13,8 @@ type AppService interface {
 	CreateSpace(createSpaceDTO domain.CreateSpaceDTO, owner domain.AddOwnerToSpaceRequestDTO) error
 	GetSpacesByUserId(userId int) ([]domain.Space, error)
 	GetSpaceById(id int) (domain.SpaceResponseDTO, error)
+	ChangeSpaceName(spaceMember domain.SpaceMemberDTO, newName string) error
+	ChangeSpaceDesc(spaceMember domain.SpaceMemberDTO, newDesc string) error
 	LeaveSpace(dto domain.SpaceMemberDTO) error
 
 	CreateInvite(createInviteDTO domain.CreateInviteDTO) (domain.InviteIdDTO, error)
@@ -20,9 +22,23 @@ type AppService interface {
 	DeleteInvite(dto domain.InviteIdDTO) error
 
 	CreateSpaceMember(dto domain.CreateSpaceMemberByInviteDTO, userId int) error
-	GetRoleByUserId(dto domain.SpaceMemberDTO) (string, error)
+	GetMember(dto domain.SpaceMemberDTO) (domain.SpaceMember, error)
+	GetMemberByMemberId(memberId int, spaceId int) (domain.SpaceMember, error)
 	GetMembersFromSpace(dto domain.SpaceIdDTO) ([]domain.SpaceMember, error)
-	PromoteMember(dto domain.SpaceMemberDTO) error
-	DemoteMember(dto domain.SpaceMemberDTO) error
-	DeleteMember(dto domain.SpaceMemberDTO) error
+	GetAllAdminsFromSpace(dto domain.SpaceIdDTO) ([]domain.SpaceMember, error)
+	UpdateMemberUsername(dto domain.UpdateSpaceMemberDTO) error
+	MemberExists(dto domain.SpaceMemberDTO) (bool, error)
+	PromoteMember(dto domain.SpaceMemberDTO, ownerId int) error
+	DemoteMember(dto domain.SpaceMemberDTO, ownerId int) error
+	DeleteMember(dto domain.SpaceMemberDTO, ownerId int) error
+
+	SetupNewTaskGroup(tg domain.CreateTaskGroupDTO, spaceMember domain.SpaceMemberDTO) error
+	GetTaskGroupById(id int) (domain.TaskGroup, error)
+	GetTasksGroupsBySpaceId(id int) ([]domain.TaskGroup, error)
+
+	GetGroupTasks(groupID int) ([]domain.Task, error)
+	AddTaskToGroup(t domain.CreateTaskDTO, taskGroupId int) error
+
+	GetMemberHistory(memberID int, groupID int) ([]domain.Grade, error)
+	SetMemberGrade(g domain.Grade) error
 }

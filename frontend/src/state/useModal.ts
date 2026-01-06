@@ -1,5 +1,8 @@
 import { create } from "zustand";
 import type { DeleteProps } from "../components/modals/DeleteSpace/DeleteSpace";
+import type { GradeModalProps } from "../components/modals/TableModal/TableModal";
+import type { ConfiguresUserType } from "../components/modals/ConfiguresUser/ConfiguresUser";
+import type { AddTaskGroupType } from "../components/modals/AddTaskGroup/AddTaskGroup";
 
 interface EmptyProps {}
 
@@ -8,6 +11,10 @@ export type ModalPropsMap = {
   add: EmptyProps;
   error: EmptyProps;
   setProfile: EmptyProps;
+  changeProfile: EmptyProps;
+  grade: GradeModalProps;
+  configuresUser: ConfiguresUserType;
+  addTask: AddTaskGroupType;
 }
 
 interface useModalType {

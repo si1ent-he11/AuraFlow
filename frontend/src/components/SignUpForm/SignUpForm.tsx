@@ -29,7 +29,7 @@ const SignUpForm = () => {
                 placeholder="email..."
                 style={
                     formState.errors.email && {color: "#e53935", border: "2px solid #e53935"}
-                } 
+                }
                 {...register(
                     "email", 
                     {

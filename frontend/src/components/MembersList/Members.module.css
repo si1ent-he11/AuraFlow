@@ -1,0 +1,21 @@
+.list_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.empty_list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-family: 'Ubuntu';
+    font-size: 22px;
+    color: #666771;
+    user-select: none;
+    margin-top: 36px;
+}

@@ -1,0 +1,78 @@
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 80px;
+    margin-top: 36px;
+    gap: 30px;
+}
+
+.title {
+    font-family: 'Ubuntu';
+    font-size: 26px;
+    color: #2f3035;
+}
+
+.info {
+    font-family: 'Ubuntu';
+    font-size: 16px;
+    color: #2f3035;
+    margin-bottom: 10px;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+    padding: 10px;
+}
+
+.pageBtn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background-color: #2e2e2e;
+    color: #f2f0e3;
+    border: none;
+    border-radius: 50%;
+    
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    flex-shrink: 0;
+    will-change: transform;
+}
+
+.pageBtn:hover {
+    transform: scale(1.15);
+    background-color: #454545;
+}
+
+.pageBtn:active {
+    transform: scale(0.95);
+}
+
+.monthName {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #2e2e2e;
+    min-width: 120px;
+    text-align: center;
+}
+
+.errorMessage {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #2e2e2e;
+    min-width: 120px;
+    text-align: center;
+}

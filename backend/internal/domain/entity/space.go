@@ -29,3 +29,11 @@ type CreateSpaceDTO struct {
 	UsernameInSpace  *string `json:"usernameInSpace"`
 	OwnerId          int     `json:"ownerId"`
 }
+
+type SpaceNameDTO struct {
+	SpaceName string `json:"spaceName" binding:"required"`
+}
+
+type SpaceDescriptionDTO struct {
+	SpaceDescription string `json:"spaceDescription" binding:"required"`
+}

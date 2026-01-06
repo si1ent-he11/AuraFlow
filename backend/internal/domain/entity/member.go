@@ -31,3 +31,13 @@ type SpaceMemberDTO struct {
 	SpaceId int `json:"spaceId"`
 	UserId  int `json:"userId"`
 }
+
+type UpdateSpaceMemberDTO struct {
+	SpaceId         int    `json:"spaceId"`
+	UserId          int    `json:"userId"`
+	UserNameInSpace string `json:"usernameInSpace" binding:"min=6,max=40"`
+}
+
+type UserNameInSpaceDTO struct {
+	UserNameInSpace string `json:"usernameInSpace" binding:"required,min=6,max=40"`
+}

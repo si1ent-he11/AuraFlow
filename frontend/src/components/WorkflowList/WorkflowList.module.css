@@ -1,0 +1,31 @@
+.workflow_list_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.workflow_button {
+    display: flex;            
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    
+    width: 100%;
+    padding: 10px 16px;
+    
+    border: 0;
+    background-color: #f2f0e3;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.icon {
+    color: #666771;
+    transition: color 0.3s ease; 
+}
+
+.icon:hover {
+    color: #2f3035;
+}

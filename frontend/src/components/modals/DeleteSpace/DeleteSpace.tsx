@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useGetSpace } from "../../../hooks/space/useGetSpace";
 import { useLeaveSpace } from "../../../hooks/space/useLeaveSpace";
-import useActiveSpace from "../../../state/useCurrentSpace";
+import useActiveSpace from "../../../state/useActiveSpace";
 import { useModal } from "../../../state/useModal";
 import Button from "../../../ui/Button/Button";
 import Loader from "../../../ui/Loader/Loader";
@@ -17,7 +17,6 @@ const DeleteSpace = ({spaceId}: DeleteProps) => {
     const {closeModal} = useModal()
     const navig = useNavigate()
     const activeSpaceId = useActiveSpace(state => state.spaceId)
-
 
     const featching = () => {
         if (activeSpaceId == spaceId) {

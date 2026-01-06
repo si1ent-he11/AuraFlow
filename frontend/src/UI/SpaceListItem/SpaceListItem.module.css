@@ -5,6 +5,7 @@
     border-radius: 10px;
     align-self: flex-start;
     padding-right: 2.6%;
+    padding-left: 10px;
     line-height: 2;
     width: 98%;
     transition: transform 0.2s ease, background-color 0.2s ease;
@@ -63,7 +64,7 @@
 
 .space_item_title {
     font-family: 'Ubuntu';
-    font-size: 20px;
+    font-size: 16px;
     color: #666771;
     user-select: none;
     

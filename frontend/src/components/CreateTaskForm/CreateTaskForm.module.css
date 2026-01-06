@@ -1,0 +1,65 @@
+.form_container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.info {
+    font-family: 'Ubuntu';
+    font-weight: 100;
+    font-size: 26px;
+}
+
+.accordion_wrapper {
+    background: #2e2e2e;
+    border: 1px solid #2e2e2e;
+    border-radius: 12px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+.accordion_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.info {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.arrow {
+    transition: transform 0.3s ease;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.arrow_up {
+    transform: rotate(180deg);
+}
+
+.form_body {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+}
+
+.form_body.show {
+    max-height: 500px;
+    opacity: 1;
+    margin-top: 15px;
+    padding-bottom: 10px;
+}
+
+.form_container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

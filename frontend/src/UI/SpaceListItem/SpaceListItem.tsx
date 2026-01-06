@@ -1,21 +1,21 @@
-import cl from "./SpaceItem.module.css"
 import type { SpaceItemDTO } from "../../types/space";
 import { useState } from "react";
 import { useModal } from "../../state/useModal";
 import type { DeleteProps } from "../../components/modals/DeleteSpace/DeleteSpace";
+import cl from "./SpaceListItem.module.css"
 
 interface SpaceItemType {
     spaceInfo: SpaceItemDTO;
     onClick: () => void; 
 } 
 
-const SpaceItem = ({spaceInfo, onClick}: SpaceItemType) => {
+const SpaceListItem = ({spaceInfo, onClick}: SpaceItemType) => {
     const [isHovered, setIsHovered] = useState(false);
     const {openModal} = useModal()
     const deleteProps: DeleteProps = { spaceId: spaceInfo.id };
     
     return (
-        <div 
+        <div
             className={[cl.space_item_container, isHovered ? cl.space_item_container_hover : ""].join(" ")} 
             onMouseEnter={() => setIsHovered(true)} 
             onMouseLeave={() => setIsHovered(false)}
@@ -35,4 +35,4 @@ const SpaceItem = ({spaceInfo, onClick}: SpaceItemType) => {
     )
 }
 
-export default SpaceItem;
+export default SpaceListItem;

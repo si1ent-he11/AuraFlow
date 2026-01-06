@@ -1,5 +1,5 @@
 import type { Invite } from "../types/invite"
-import type { CreateSpaceDTO } from "../types/space"
+import type { CreateSpaceDTO, SpaceDescriptionDTO, SpaceNameDTO } from "../types/space"
 import { fetchWithAuth } from "./auth"
 
 export const GetSpaceIdsByUserId = async () => {
@@ -14,7 +14,7 @@ export const GetSpaceById = async (spaceId: number) => {
         method: "GET",
         credentials: "include",
     })
-} 
+}
 
 export const CreateSpace = async (spaceDTO: CreateSpaceDTO) => {
     return fetchWithAuth("http://localhost:8080/spaces/", {
@@ -35,6 +35,28 @@ export const JoinSpace = async (invite: Invite) => {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(invite),
+    })
+}
+
+export const ChangeSpaceName = async (spaceId: number, newSpaceName: SpaceNameDTO) => {
+    return fetchWithAuth(`http://localhost:8080/spaces/${spaceId}/name`, {
+        method: "PATCH",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newSpaceName),
+    })
+}
+
+export const ChangeSpaceDesc = async (spaceId: number, newSpaceDesc: SpaceDescriptionDTO) => {
+    return fetchWithAuth(`http://localhost:8080/spaces/${spaceId}/desc`, {
+        method: "PATCH",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newSpaceDesc),
     })
 }
 

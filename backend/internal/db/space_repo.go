@@ -81,3 +81,31 @@ func (db db) DeleteSpaceById(spaceId int) error {
 
 	return nil
 }
+
+func (db db) ChangeSpaceName(spaceId int, newName string) error {
+	_, err := db.conn.Exec(
+		`
+			UPDATE spaces 
+			SET space_name = $1
+			WHERE id = $2
+		`,
+		newName,
+		spaceId,
+	)
+
+	return err
+}
+
+func (db db) ChangeSpaceDesc(spaceId int, newDesc string) error {
+	_, err := db.conn.Exec(
+		`
+			UPDATE spaces 
+			SET space_description = $1
+			WHERE id = $2
+		`,
+		newDesc,
+		spaceId,
+	)
+
+	return err
+}

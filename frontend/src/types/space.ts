@@ -18,11 +18,10 @@ export interface CreateSpaceDTO {
     usernameInSpace?: string;
 }
 
-export interface SpaceMemberType {
-    id: number;
-    spaceId: number;
-    userId: number;
-    role: "owner" | "admin" | "member"
-    joinedAt: string;
+export interface SpaceNameDTO {
+    spaceName: string;
 }
 
+export interface SpaceDescriptionDTO {
+    spaceDescription: string;
+}

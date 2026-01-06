@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS tasks_groups;
+
+DROP TABLE IF EXISTS tasks;
+
+DROP TABLE IF EXISTS grades;

@@ -44,6 +44,7 @@ const AddSpace = () => {
             console.log(error)
         }
     }
+    
     return (
         <div className={cl.container}>
             <div className={cl.modal_bar}>
@@ -115,7 +116,7 @@ const AddSpace = () => {
                             ...registerCreateForm(
                                 "spaceDescription",
                                 {
-                                    minLength: { 
+                                    minLength: {
                                         value: 6, message: "min 6 characters" 
                                     },
                                     maxLength: { 
@@ -126,7 +127,11 @@ const AddSpace = () => {
                         }
                     />
                     <Input
-                        className={cl.modal_input}
+                        className={                            [
+                                cl.modal_input, 
+                                formStateCreateForm.errors.usernameInSpace ? cl.error : ""
+                            ].join(" ")
+                        }
                         placeholder="name in space (optional)..."
                         {
                             ...registerCreateForm(
@@ -144,7 +149,7 @@ const AddSpace = () => {
                     />
                     <Button type="submit">submit</Button>
                 </form>
-                :                 
+                :
                 <form 
                     className={cl.action_container}
                     onSubmit={handleSubmitJoinForm(featchingJoin)}
@@ -165,7 +170,12 @@ const AddSpace = () => {
                         )}
                     />
                     <Input
-                        className={cl.modal_input}
+                        className={
+                            [
+                                cl.modal_input, 
+                                formStateJoinForm.errors.usernameInSpace ? cl.error : ""
+                            ].join(" ")
+                        }
                         placeholder="name in space (optional)..."
                         {
                             ...registerJoinForm(

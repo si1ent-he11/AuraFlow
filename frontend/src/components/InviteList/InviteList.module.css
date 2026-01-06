@@ -1,0 +1,12 @@
+.empty_list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-family: 'Ubuntu';
+    font-size: 22px;
+    color: #666771;
+    user-select: none;
+    
+    margin-bottom: 36px;
+}

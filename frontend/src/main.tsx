@@ -10,7 +10,17 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import ErrorPage from './pages/ErrorPage/ErrorPage.tsx'
 import Home from './pages/Home/Home.tsx'
 import HomeLayout from './layouts/HomeLayout/HomeLayout.tsx'
-import SpacePage from './pages/SpaceIntro/SpaceIntro.tsx'
+import SpaceIntro from './pages/SpaceIntro/SpaceIntro.tsx'
+import SpaceLayout from './layouts/SpaceLayout/SpaceLayout.tsx'
+import Space from './pages/Space/Space.tsx'
+import Members from './pages/Members/Members.tsx'
+import Admins from './pages/Admins/Admins.tsx'
+import OwnerSpaceSetting from './pages/OwnerSpaceSetting/OwnerSpaceSetting.tsx'
+import GradeTablePage from './pages/GradeTablePage/GradeTablePage.tsx'
+import Analytics from './pages/Analytics/Analytics.tsx'
+import TaskGroupList from './pages/TasksGroupsList/TasksGroupsList.tsx'
+import TaskGroup from './pages/TaskGroup/TaskGroup.tsx'
+import TaskPage from './pages/Task/Task.tsx'
 
 const router = createBrowserRouter([
     {element: <MainPageLayout />, children: [
@@ -25,7 +35,18 @@ const router = createBrowserRouter([
     ]},
     {element: <HomeLayout />, children: [
         {path: "/home", element: <Home />},
-        {path: "/spaces/:id", element: <SpacePage />}
+        {path: "/spaces/info/:id", element: <SpaceIntro />}
+    ]},
+    {element: <SpaceLayout />, children: [
+        {path: "/spaces/:id", element: <Space />},
+        {path: "/spaces/members", element: <Members />},
+        {path: "/spaces/admins", element: <Admins />},
+        {path: "/spaces/setting", element: <OwnerSpaceSetting />},
+        {path: "/spaces/grade", element: <GradeTablePage />},
+        {path: "/spaces/analytics", element: <Analytics />},
+        {path: "/spaces/task-group-list", element: <TaskGroupList />},
+        {path: "/spaces/task-group/:id", element: <TaskGroup />},
+        {path: "/spaces/task-group/tasks/:id", element: <TaskPage/>}
     ]}
 ])
 

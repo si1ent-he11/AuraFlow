@@ -40,7 +40,7 @@ const HomeLayout = () => {
                             placeholder="search... 🔍"
                         />
                         <div className={cl.list_bar}>
-                            <div className={cl.list_title}>all spaces :</div>
+                            <div className={cl.list_title}>all spaces</div>
                             <button className={cl.add_space_button} onClick={() => openModal("add", {})}>+</button>
                         </div>
                         <SpacesList className={cl.list} list={filteredData!} />

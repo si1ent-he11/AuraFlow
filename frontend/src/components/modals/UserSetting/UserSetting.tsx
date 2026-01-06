@@ -21,15 +21,15 @@ const UserSetting = () => {
     const {mutate: mutateLogout} = useLogout()
     const {mutate: mutateUpdateUser} = useUpdateUser()
     const {closeModal} = useModal()
-
-    const logoutFetching = () => {
-        mutateLogout()
-        logout()
+    
+    const fetching = (obj: UserDTO) => {
+        mutateUpdateUser(obj)
         closeModal()
     }
 
-    const fetching = (obj: UserDTO) => {
-        mutateUpdateUser(obj)
+    const leaveFetching = () => {
+        mutateLogout()
+        logout()
         closeModal()
     }
 
@@ -82,7 +82,7 @@ const UserSetting = () => {
             <div className={cl.separator}></div>
             <div className={cl.info_container}>
                 <p className={cl.info}>Are you sure you want to log out of your account?</p>
-                <Button onClick={() => logoutFetching()}>Logout</Button>
+                <Button onClick={() => leaveFetching()}>Logout</Button>
             </div>
         </div>
     )

@@ -26,6 +26,7 @@ func (r router) ReturnRouter() *gin.Engine {
 		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
 		AllowCredentials: true,
 	}))
+
 	auth := api.Group("/auth")
 	{
 		auth.POST("/signup", r.signUp)
@@ -36,27 +37,54 @@ func (r router) ReturnRouter() *gin.Engine {
 
 	user := api.Group("/users")
 	{
-		user.GET("/", r.getUser)
 		user.GET("/:id", r.getUserById)
+		user.GET("/", r.getUser)
 		user.PATCH("/", r.updateUser)
 	}
 
 	spaces := api.Group("/spaces")
 	{
 		spaces.GET("/", r.getSpacesByUserId)
-		spaces.GET("/:id", r.getSpaceById)
+		spaces.GET("/members/:id", r.getMemberByMemberId)
 		spaces.POST("/", r.createSpace)
-		spaces.DELETE("/:id", r.leaveSpace)
 
-		spaces.GET("/:id/members", r.getMembersFromSpace)
-		spaces.POST("/members", r.createSpaceMember)
 		spaces.PATCH("/members/promote", r.promoteMember)
+		spaces.POST("/members", r.createSpaceMember)
 		spaces.PATCH("/members/demote", r.demoteMember)
 		spaces.DELETE("/members", r.deleteMember)
 
-		spaces.GET("/:id/invites", r.getInvitesBySpaceId)
 		spaces.POST("/invites", r.createInvite)
 		spaces.DELETE("/invites", r.deleteInvite)
+	}
+
+	inSpace := spaces.Group("/:id")
+	inSpace.Use(r.memberAccessMiddleware())
+	{
+		inSpace.GET("/admins", r.getAdminsFromSpace)
+		inSpace.GET("/members", r.getMembersFromSpace)
+		inSpace.GET("/members/:member_id", r.getMemberByMemberId)
+		inSpace.GET("", r.getSpaceById)
+		inSpace.PATCH("/name", r.changeSpaceName)
+		inSpace.PATCH("/desc", r.changeSpaceDesc)
+		inSpace.DELETE("", r.leaveSpace)
+
+		inSpace.GET("/members/me", r.getMember)
+		inSpace.PATCH("/members", r.updateMemberUsername)
+
+		inSpace.GET("/invites", r.getInvitesBySpaceId)
+	}
+
+	spacesTasks := api.Group("/spaces")
+	{
+		spacesTasks.POST("/:id/task-groups", r.createTaskGroup)
+		spacesTasks.GET("/:id/task-groups", r.getTasksGroupsBySpaceId)
+		spacesTasks.GET("/task-groups/:id", r.getTaskGroupById)
+
+		spacesTasks.POST("/task-groups/:id/tasks", r.createTask)
+		spacesTasks.GET("/task-groups/:id/tasks", r.getGroupTasks)
+
+		spacesTasks.POST("/grades", r.setGrade)
+		spacesTasks.GET("/members/:id/task-groups/:group_id/history", r.getMemberHistory)
 	}
 
 	return api
