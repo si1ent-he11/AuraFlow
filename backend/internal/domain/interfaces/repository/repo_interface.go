@@ -39,14 +39,16 @@ type DatabaseRepository interface {
 	DeleteMember(dto domain.SpaceMemberDTO) error
 
 	CreateTaskGroup(tg domain.TaskGroup) error
-	UpdateTaskGroup(tg domain.TaskGroup) error
+	UpdateTaskGroup(taskGroupId int, tg domain.TaskGroupUpdateTitleDTO) error
 	GetTaskGroupById(id int) (domain.TaskGroup, error)
 	GetTasksGroupsBySpaceId(id int) ([]domain.TaskGroup, error)
+	GetExpiresTasksFromSpace(spaceId string) ([]domain.TaskIntroDTO, error)
 
 	CreateTask(t domain.CreateTaskDTO, taskGroupId int) error
 	GetTasksByGroup(groupID int) ([]domain.Task, error)
-	DeleteTask(id int) error
+	DeleteTask(taskID int) error
 
 	InsertGrade(g domain.Grade) error
 	GetGradesByMember(memberID int, groupID int) ([]domain.Grade, error)
+	DeleteTaskGroup(groupID int) error
 }

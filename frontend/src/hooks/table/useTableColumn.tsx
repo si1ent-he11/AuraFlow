@@ -12,7 +12,7 @@ interface ColumnProps {
 
 export const useTableColumns = ({ daysInMonth, isAdmin, onCellClick }: ColumnProps) => {
   return useMemo(() => [
-    columnHelper.accessor('usernameInSpace', { 
+    columnHelper.accessor('username_in_space', { 
       header: 'members',
       cell: (info) => <b>{info.getValue()}</b>,
     }),
@@ -23,7 +23,7 @@ export const useTableColumns = ({ daysInMonth, isAdmin, onCellClick }: ColumnPro
         header: date,
         cell: (info) => {
           const user = info.row.original;
-          const grade = user.allGrades.find((g) => g.date === date);
+          const grade = user.all_grades.find((g) => g.created_at === date);
 
           return (
             <div

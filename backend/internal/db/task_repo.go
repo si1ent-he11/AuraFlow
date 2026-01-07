@@ -1,6 +1,8 @@
 package data
 
-import domain "github.com/si1ent-he11/AuraFlow/internal/domain/entity"
+import (
+	domain "github.com/si1ent-he11/AuraFlow/internal/domain/entity"
+)
 
 func (d db) CreateTaskGroup(tg domain.TaskGroup) error {
 	_, err := d.conn.Exec(
@@ -29,17 +31,15 @@ func (d db) GetTaskGroupById(id int) (domain.TaskGroup, error) {
 	return tg, err
 }
 
-func (d db) UpdateTaskGroup(tg domain.TaskGroup) error {
+func (d db) UpdateTaskGroup(taskGroupId int, tg domain.TaskGroupUpdateTitleDTO) error {
 	_, err := d.conn.Exec(
 		`
 			UPDATE task_groups 
-			SET task_group_name = $1, min_score = $2, max_score = $3 
-			WHERE id = $4
+			SET task_group_name = $1 
+			WHERE id = $2
 		`,
 		tg.TaskGroupName,
-		tg.MinScore,
-		tg.MaxScore,
-		tg.ID,
+		taskGroupId,
 	)
 	return err
 }
@@ -77,11 +77,6 @@ func (d db) GetTasksByGroup(groupID int) ([]domain.Task, error) {
 	return tasks, err
 }
 
-func (d db) DeleteTask(id int) error {
-	_, err := d.conn.Exec("DELETE FROM tasks WHERE id = $1", id)
-	return err
-}
-
 func (d db) InsertGrade(g domain.Grade) error {
 	_, err := d.conn.Exec(`
 		INSERT INTO grades (member_id, task_group_id, score, grade_date)
@@ -108,4 +103,30 @@ func (d db) GetGradesByMember(memberID int, groupID int) ([]domain.Grade, error)
 		groupID,
 	)
 	return grades, err
+}
+
+func (d db) GetExpiresTasksFromSpace(spaceId string) ([]domain.TaskIntroDTO, error) {
+	tasks := []domain.TaskIntroDTO{}
+	err := d.conn.Select(
+		&tasks,
+		`
+			SELECT t.id, t.title, t.task_description, t.expires_at
+			FROM task_groups tg 
+			JOIN tasks t 
+			ON t.task_group_id = tg.id
+			WHERE expires_at > NOW() AND space_id = $1;
+		`,
+		spaceId,
+	)
+	return tasks, err
+}
+
+func (d db) DeleteTaskGroup(groupID int) error {
+	_, err := d.conn.Exec(`DELETE FROM task_groups WHERE id = $1`, groupID)
+	return err
+}
+
+func (d db) DeleteTask(taskID int) error {
+	_, err := d.conn.Exec(`DELETE FROM tasks WHERE id = $1`, taskID)
+	return err
 }

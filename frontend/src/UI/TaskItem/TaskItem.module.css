@@ -28,9 +28,9 @@
     font-family: 'Ubuntu';
     font-size: 16px;
     font-weight: 600;
-    margin: 0;
     color: #2f3035;
-    
+
+    margin: 0;
     max-width: 700px;
     white-space: nowrap;
     overflow: hidden;
@@ -49,4 +49,18 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.deleteBtn {
+    background: transparent;
+    border: none;
+    color: #555;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 4px;
+    margin-left: auto;
+}
+
+.deleteBtn:hover {
+    color: #2f3035;
 }

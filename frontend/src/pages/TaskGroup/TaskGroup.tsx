@@ -5,12 +5,19 @@ import Loader from "../../ui/Loader/Loader";
 import CreateTaskForm from "../../components/CreateTaskForm/CreateTaskForm";
 import useMember from "../../state/useMember";
 import TaskList from "../../components/TaskList/TaskList";
+import useGetMemberByMemberId from "../../hooks/member/useGetMemberByMemberId";
+import useActiveSpace from "../../state/useActiveSpace";
 
 const TaskGroup = () => {
     const params = useParams()
     const tasksGroupId = params.id ? Number(params.id) : null;
     const {data, isLoading} = useGetTaskGroup(tasksGroupId)
+    
     const member = useMember(state => state.member)
+    const memberId = member?.id ?? null;
+
+    const spaceId = useActiveSpace(state => state.spaceId)
+    const {data: currentMemberSetting} = useGetMemberByMemberId(memberId, spaceId)
 
     if (isLoading) return <Loader />
 
@@ -20,7 +27,7 @@ const TaskGroup = () => {
                 <h1 className={cl.title}>{data?.task_group_name}</h1>
             </div>
             {
-                member?.spaceRole == "admin" || member?.spaceRole == "owner" 
+                currentMemberSetting?.spaceRole == "admin" || currentMemberSetting?.spaceRole == "owner" 
                 ?
                 <div className={cl.form_container}>
                     <CreateTaskForm taskGroupId={tasksGroupId!}/>

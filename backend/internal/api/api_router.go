@@ -42,10 +42,16 @@ func (r router) ReturnRouter() *gin.Engine {
 		user.PATCH("/", r.updateUser)
 	}
 
+	tg := api.Group("/spaces/task-groups")
+	{
+
+		tg.PATCH("/:id", r.updateTaskGroup)
+	}
+
 	spaces := api.Group("/spaces")
 	{
+		spaces.GET("/:id/members/:member_id", r.getMemberByMemberId)
 		spaces.GET("/", r.getSpacesByUserId)
-		spaces.GET("/members/:id", r.getMemberByMemberId)
 		spaces.POST("/", r.createSpace)
 
 		spaces.PATCH("/members/promote", r.promoteMember)
@@ -55,6 +61,7 @@ func (r router) ReturnRouter() *gin.Engine {
 
 		spaces.POST("/invites", r.createInvite)
 		spaces.DELETE("/invites", r.deleteInvite)
+
 	}
 
 	inSpace := spaces.Group("/:id")
@@ -62,11 +69,12 @@ func (r router) ReturnRouter() *gin.Engine {
 	{
 		inSpace.GET("/admins", r.getAdminsFromSpace)
 		inSpace.GET("/members", r.getMembersFromSpace)
-		inSpace.GET("/members/:member_id", r.getMemberByMemberId)
 		inSpace.GET("", r.getSpaceById)
 		inSpace.PATCH("/name", r.changeSpaceName)
 		inSpace.PATCH("/desc", r.changeSpaceDesc)
 		inSpace.DELETE("", r.leaveSpace)
+
+		inSpace.GET("/tasks", r.getExpiresTasksFromSpace)
 
 		inSpace.GET("/members/me", r.getMember)
 		inSpace.PATCH("/members", r.updateMemberUsername)
@@ -76,15 +84,16 @@ func (r router) ReturnRouter() *gin.Engine {
 
 	spacesTasks := api.Group("/spaces")
 	{
-		spacesTasks.POST("/:id/task-groups", r.createTaskGroup)
 		spacesTasks.GET("/:id/task-groups", r.getTasksGroupsBySpaceId)
 		spacesTasks.GET("/task-groups/:id", r.getTaskGroupById)
+		spacesTasks.POST("/:id/task-groups", r.createTaskGroup)
+		spacesTasks.DELETE("/task-groups/:id", r.deleteTaskGroup)
 
 		spacesTasks.POST("/task-groups/:id/tasks", r.createTask)
 		spacesTasks.GET("/task-groups/:id/tasks", r.getGroupTasks)
+		spacesTasks.DELETE("/tasks/:id", r.deleteTask)
 
 		spacesTasks.POST("/grades", r.setGrade)
-		spacesTasks.GET("/members/:id/task-groups/:group_id/history", r.getMemberHistory)
 	}
 
 	return api

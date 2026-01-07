@@ -6,7 +6,7 @@ const useGetMemberByMemberId = (memberId: number | null, spaceId: number | null)
     return useQuery<MemberType, Error>({
         enabled: !!memberId && !!spaceId,
         queryFn: () => getMemberByMemberId(memberId!, spaceId!),
-        queryKey: ["members", spaceId]
+        queryKey: ["members", spaceId, memberId]
     })
 }
 

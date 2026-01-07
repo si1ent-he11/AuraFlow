@@ -6,6 +6,7 @@ import ConfiguresUser, { type ConfiguresUserType } from "../ConfiguresUser/Confi
 import DeleteSpace, { type DeleteProps } from "../DeleteSpace/DeleteSpace";
 import Error from "../Error/Error";
 import GradeModal, { type GradeModalProps } from "../TableModal/TableModal";
+import TaskGroupSetting, { type TaskGroupSettingType } from "../TaskGroupSetting/TaskGroupSetting";
 import UserSetting from "../UserSetting/UserSetting";
 import cl from "./ModalRoot.module.css"
 
@@ -27,6 +28,7 @@ const ModalRoot = () => {
                 { type == "grade" && <GradeModal {...props as GradeModalProps} /> }
                 { type == "configuresUser" && <ConfiguresUser {...props as ConfiguresUserType} />}
                 { type == "addTask" && <AddTaskGroup {...props as AddTaskGroupType} />}
+                {type == "taskGroupSettingType" && <TaskGroupSetting {...props as TaskGroupSettingType} />}
             </div>
         </div>
     )

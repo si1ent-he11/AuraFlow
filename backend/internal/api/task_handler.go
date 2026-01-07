@@ -159,11 +159,21 @@ func (r router) setGrade(ctx *gin.Context) {
 	ctx.Status(http.StatusOK)
 }
 
-func (r router) getMemberHistory(ctx *gin.Context) {
-	memberID, _ := strconv.Atoi(ctx.Param("id"))
-	groupID, _ := strconv.Atoi(ctx.Param("group_id"))
+func (r router) getExpiresTasksFromSpace(ctx *gin.Context) {
+	spaceId := ctx.Param("id")
+	tasks, err := r.service.GetExpiresTasksFromSpace(spaceId)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, map[string]string{
+			"message": err.Error(),
+		})
+		return
+	}
+	ctx.JSON(http.StatusOK, tasks)
+}
 
-	history, err := r.service.GetMemberHistory(memberID, groupID)
+func (r router) updateTaskGroup(ctx *gin.Context) {
+	strId := ctx.Param("id")
+	taskGroupId, err := strconv.Atoi(strId)
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, map[string]string{
 			"message": err.Error(),
@@ -171,5 +181,62 @@ func (r router) getMemberHistory(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusOK, history)
+	newTaskGroupTitle := domain.TaskGroupUpdateTitleDTO{}
+	if err := ctx.ShouldBindJSON(&newTaskGroupTitle); err != nil {
+		log.Println(err)
+		ctx.JSON(http.StatusBadRequest, map[string]string{
+			"message": err.Error(),
+		})
+		return
+	}
+
+	if err := r.service.UpdateTaskGroup(taskGroupId, newTaskGroupTitle); err != nil {
+		ctx.JSON(http.StatusBadRequest, map[string]string{
+			"message": err.Error(),
+		})
+		return
+	}
+
+	ctx.Status(http.StatusOK)
+}
+
+func (r router) deleteTaskGroup(ctx *gin.Context) {
+	strId := ctx.Param("id")
+	taskGroupId, err := strconv.Atoi(strId)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, map[string]string{
+			"message": err.Error(),
+		})
+		return
+	}
+
+	if err := r.service.DeleteTaskGroup(taskGroupId); err != nil {
+		ctx.JSON(http.StatusBadRequest, map[string]string{
+			"message": err.Error(),
+		})
+		return
+	}
+
+	ctx.Status(http.StatusNoContent)
+}
+
+func (r router) deleteTask(ctx *gin.Context) {
+	strId := ctx.Param("id")
+	taskId, err := strconv.Atoi(strId)
+
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, map[string]string{
+			"message": err.Error(),
+		})
+		return
+	}
+
+	if err := r.service.DeleteTask(taskId); err != nil {
+		ctx.JSON(http.StatusBadRequest, map[string]string{
+			"message": err.Error(),
+		})
+		return
+	}
+
+	ctx.Status(http.StatusNoContent)
 }

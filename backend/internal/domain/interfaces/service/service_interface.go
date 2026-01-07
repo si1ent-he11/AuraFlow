@@ -35,10 +35,13 @@ type AppService interface {
 	SetupNewTaskGroup(tg domain.CreateTaskGroupDTO, spaceMember domain.SpaceMemberDTO) error
 	GetTaskGroupById(id int) (domain.TaskGroup, error)
 	GetTasksGroupsBySpaceId(id int) ([]domain.TaskGroup, error)
+	GetExpiresTasksFromSpace(spaceId string) ([]domain.TaskIntroDTO, error)
+	UpdateTaskGroup(taskGroupId int, tg domain.TaskGroupUpdateTitleDTO) error
+	DeleteTask(taskID int) error
 
 	GetGroupTasks(groupID int) ([]domain.Task, error)
 	AddTaskToGroup(t domain.CreateTaskDTO, taskGroupId int) error
+	DeleteTaskGroup(groupID int) error
 
-	GetMemberHistory(memberID int, groupID int) ([]domain.Grade, error)
 	SetMemberGrade(g domain.Grade) error
 }

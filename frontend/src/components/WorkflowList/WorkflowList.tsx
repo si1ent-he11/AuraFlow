@@ -3,6 +3,7 @@ import cl from "./WorkflowList.module.css"
 import { useNavigate } from "react-router-dom";
 import { useModal } from "../../state/useModal";
 import useMember from "../../state/useMember";
+import useActiveSpace from "../../state/useActiveSpace";
 
 interface WrapperButtonType {
     onClick?: () => void;
@@ -29,6 +30,7 @@ const WorkflowButton = ({children, onClick}: WrapperButtonType) => (
 const WorkflowList = () => {
     const navig = useNavigate()
     const openModal = useModal(state => state.openModal)
+    const spaceId = useActiveSpace(state => state.spaceId)
     const { member } = useMember()
 
     return (
@@ -45,7 +47,7 @@ const WorkflowList = () => {
                 <line x1="3" y1="18" x2="3.01" y2="18"></line>
             </WorkflowButton>
 
-            {/* Grades */}
+            {/* Grades
             <WorkflowButton onClick={
                 () => {
                     navig("/spaces/grade")
@@ -54,10 +56,12 @@ const WorkflowList = () => {
                 <line x1="18" y1="20" x2="18" y2="10"></line>
                 <line x1="12" y1="20" x2="12" y2="4"></line>
                 <line x1="6" y1="20" x2="6" y2="14"></line>
-            </WorkflowButton>
+            </WorkflowButton> */}
 
             {/* Urgent tasks */}
-            <WorkflowButton>
+            <WorkflowButton onClick={
+                () => navig(`/spaces/${spaceId}/tasks/`)
+            }>
                 <circle cx="12" cy="12" r="10"></circle>
                 <polyline points="12 6 12 12 16 14"></polyline>
                 {/* <circle cx="18" cy="18" r="4" fill="#e74c3c" stroke="none"></circle> */}

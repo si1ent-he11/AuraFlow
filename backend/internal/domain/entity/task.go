@@ -11,6 +11,10 @@ type TaskGroup struct {
 	MaxScore      int    `json:"max_score" db:"max_score"`
 }
 
+type TaskGroupUpdateTitleDTO struct {
+	TaskGroupName string `json:"task_group_name" db:"task_group_name" binding:"max=100"`
+}
+
 type CreateTaskGroupDTO struct {
 	TaskGroupName string `json:"task_group_name" db:"task_group_name" binding:"max=100"`
 	MinScore      int    `json:"min_score" db:"min_score"`
@@ -25,6 +29,13 @@ type Task struct {
 	IsCompleted bool       `json:"is_completed" db:"is_completed"`
 	ExpiresAt   *time.Time `json:"expires_at" db:"expires_at"`
 	CreatedAt   time.Time  `json:"created_at" db:"created_at"`
+}
+
+type TaskIntroDTO struct {
+	ID          int        `json:"id" db:"id"`
+	Title       string     `json:"title" db:"title" binding:"max=200"`
+	Description *string    `json:"description" db:"task_description"`
+	ExpiresAt   *time.Time `json:"expires_at" db:"expires_at"`
 }
 
 type CreateTaskDTO struct {

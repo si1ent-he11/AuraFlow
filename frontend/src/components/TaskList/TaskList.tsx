@@ -23,8 +23,6 @@ const TaskList = ({groupId}: TaskListType) => {
         );
     }, [data, searchValue]);
 
-    console.log(filteredData)
-
     return(
         <div className={cl.input_container}>
             <Input

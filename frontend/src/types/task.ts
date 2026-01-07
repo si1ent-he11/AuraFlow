@@ -37,6 +37,9 @@ export interface TaskGroupDTO {
   max_score: number;
 }
 
+export interface TaskGroupUpdateTitleDTO {
+	task_group_name: string;
+}
 
 export interface Grade {
   id?: number;

@@ -5,7 +5,7 @@ import cl from "./GradeTablePage.module.css";
 import type { TaskGroup, UserRow, Grade } from "../../types/task";
 import type { MemberType } from "../../types/member";
 import useMember from "../../state/useMember";
-import { useTaskGroup } from "../../hooks/task/useTaskGroup";
+import { useTasksGroups } from "../../hooks/task/useTaskGroup";
 import useActiveSpace from "../../state/useActiveSpace";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../ui/Loader/Loader";
@@ -21,7 +21,7 @@ const GradeTablePage = () => {
   const spaceId = useActiveSpace(state => state.spaceId);
   const navig = useNavigate();
   
-  const { data: taskGroup, isLoading, isError } = useTaskGroup(spaceId);
+  const { data: taskGroup, isLoading, isError } = useTasksGroups(spaceId);
   
   const [activeGroup, setActiveGroup] = useState<TaskGroup | null>(null);
   const member = useMember(state => state.member);

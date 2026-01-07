@@ -51,6 +51,10 @@ func (as appService) GetGroupTasks(groupID int) ([]domain.Task, error) {
 	return as.db.GetTasksByGroup(groupID)
 }
 
+func (as appService) GetExpiresTasksFromSpace(spaceId string) ([]domain.TaskIntroDTO, error) {
+	return as.db.GetExpiresTasksFromSpace(spaceId)
+}
+
 func (as appService) SetMemberGrade(g domain.Grade) error {
 	group, err := as.db.GetTaskGroupById(g.TaskGroupID)
 	if err != nil {
@@ -64,6 +68,18 @@ func (as appService) SetMemberGrade(g domain.Grade) error {
 	return as.db.InsertGrade(g)
 }
 
+func (as appService) UpdateTaskGroup(taskGroupId int, tg domain.TaskGroupUpdateTitleDTO) error {
+	return as.db.UpdateTaskGroup(taskGroupId, tg)
+}
+
 func (as appService) GetMemberHistory(memberID int, groupID int) ([]domain.Grade, error) {
 	return as.db.GetGradesByMember(memberID, groupID)
+}
+
+func (as appService) DeleteTask(taskID int) error {
+	return as.db.DeleteTask(taskID)
+}
+
+func (as appService) DeleteTaskGroup(groupID int) error {
+	return as.db.DeleteTaskGroup(groupID)
 }

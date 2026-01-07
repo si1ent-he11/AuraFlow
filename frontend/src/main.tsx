@@ -21,6 +21,7 @@ import Analytics from './pages/Analytics/Analytics.tsx'
 import TaskGroupList from './pages/TasksGroupsList/TasksGroupsList.tsx'
 import TaskGroup from './pages/TaskGroup/TaskGroup.tsx'
 import TaskPage from './pages/Task/Task.tsx'
+import UrgentTasks from './pages/UrgentTasks/UrgentTasks.tsx'
 
 const router = createBrowserRouter([
     {element: <MainPageLayout />, children: [
@@ -46,6 +47,7 @@ const router = createBrowserRouter([
         {path: "/spaces/analytics", element: <Analytics />},
         {path: "/spaces/task-group-list", element: <TaskGroupList />},
         {path: "/spaces/task-group/:id", element: <TaskGroup />},
+        {path: "/spaces/:id/tasks/", element: <UrgentTasks />},
         {path: "/spaces/task-group/tasks/:id", element: <TaskPage/>}
     ]}
 ])

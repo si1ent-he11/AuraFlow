@@ -1,0 +1,44 @@
+.container {
+    font-family: 'Ubuntu';
+    max-width: 800px;
+    min-height: 800px;
+    margin: 40px auto;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.separator {
+    height: 2px;
+    background-color: #2e2e2e2b;
+    width: 60px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a1a1b;
+    line-height: 1.2;
+    
+    white-space: normal; 
+    word-wrap: break-word; 
+    max-width: 100%;
+
+    margin-bottom: 16px;
+}
+
+.info {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #4a4a4a;
+    line-height: 1.6;
+
+    white-space: normal; 
+    word-wrap: break-word; 
+    max-width: 100%;
+
+
+    margin-bottom: 12px;
+}
